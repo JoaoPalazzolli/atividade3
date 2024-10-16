@@ -1,0 +1,77 @@
+<div class="container my-5">
+    <form [formGroup]="viagemForm" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
+  
+      <div class="row g-3">
+        <!-- Destino -->
+        <div class="col-md-6">
+          <div class="form-floating">
+            <select id="destino" class="form-select" [formControl]="formControls['destino']" required>
+              <option value="">Selecione um destino</option>
+              <option *ngFor="let destino of destinos" [value]="destino">{{ destino }}</option>
+            </select>
+            <label for="destino">Destino</label>
+          </div>
+          <div *ngIf="formControls['destino'].invalid && formControls['destino'].touched" class="text-danger">
+            O destino é obrigatório.
+          </div>
+        </div>
+  
+        <!-- Data de Ida -->
+        <div class="col-md-3">
+          <div class="form-floating">
+            <input id="dataIda" type="date" class="form-control" [formControl]="formControls['dataIda']" required>
+            <label for="dataIda">Data de Ida</label>
+          </div>
+          <div *ngIf="formControls['dataIda'].invalid && formControls['dataIda'].touched" class="text-danger">
+            A data de ida é obrigatória.
+          </div>
+        </div>
+  
+        <!-- Data de Volta -->
+        <div class="col-md-3">
+          <div class="form-floating">
+            <input id="dataVolta" type="date" class="form-control" [formControl]="formControls['dataVolta']" required>
+            <label for="dataVolta">Data de Volta</label>
+          </div>
+          <div *ngIf="formControls['dataVolta'].invalid && formControls['dataVolta'].touched" class="text-danger">
+            A data de volta é obrigatória.
+          </div>
+        </div>
+  
+        <!-- Número de Passageiros -->
+        <div class="col-md-6">
+          <div class="form-floating">
+            <input id="numeroPassageiros" type="number" class="form-control" [formControl]="formControls['numeroPassageiros']" required>
+            <label for="numeroPassageiros">Número de Passageiros</label>
+          </div>
+          <div *ngIf="formControls['numeroPassageiros'].invalid && formControls['numeroPassageiros'].touched" class="text-danger">
+            O número de passageiros deve estar entre 1 e 5.
+          </div>
+        </div>
+  
+        <!-- E-mail de Contato -->
+        <div class="col-md-6">
+          <div class="form-floating">
+            <input id="emailContato" type="email" class="form-control" [formControl]="formControls['emailContato']" required>
+            <label for="emailContato">E-mail de Contato</label>
+          </div>
+          <div *ngIf="formControls['emailContato'].invalid && formControls['emailContato'].touched" class="text-danger">
+            Insira um e-mail válido.
+          </div>
+        </div>
+  
+        <!-- Botão de Enviar -->
+        <div class="col-12">
+          <button type="submit" 
+                  class="btn w-100" 
+                  [ngClass]="{
+                    'btn-primary': viagemForm.valid, 
+                    'btn-secondary': viagemForm.invalid
+                  }"
+                  [disabled]="viagemForm.invalid">Enviar</button>
+        </div>
+      </div>
+  
+    </form>
+  </div>
+  
